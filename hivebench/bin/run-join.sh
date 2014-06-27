@@ -57,11 +57,11 @@ echo "CREATE EXTERNAL TABLE rankings (pageURL STRING, pageRank INT, avgDuration 
 echo "CREATE EXTERNAL TABLE uservisits (sourceIP STRING,destURL STRING,visitDate STRING,adRevenue DOUBLE,userAgent STRING,countryCode STRING,languageCode STRING,searchWord STRING,duration INT ) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORED AS SEQUENCEFILE LOCATION '$INPUT_HDFS/uservisits/';" >> $DIR/hive-benchmark/rankings_uservisits_join.hive
 cat $DIR/hive-benchmark/rankings_uservisits_join.template >> $DIR/hive-benchmark/rankings_uservisits_join.hive
 
-USIZE=$($HADOOP_EXECUTABLE job -history $INPUT_HDFS/uservisits | grep 'HiBench.Counters.*|BYTES_DATA_GENERATED')
+USIZE=`grep "BYTES_DATA_GENERATED=" $TMPLOGFILE/uservisits | sed 's/BYTES_DATA_GENERATED=//'`
 USIZE=${USIZE##*|}
 USIZE=${USIZE//,/}
 
-RSIZE=$($HADOOP_EXECUTABLE job -history $INPUT_HDFS/rankings | grep 'HiBench.Counters.*|BYTES_DATA_GENERATED')
+RSIZE=`grep "BYTES_DATA_GENERATED=" $TMPLOGFILE/rankings | sed 's/BYTES_DATA_GENERATED=//'`
 RSIZE=${RSIZE##*|}
 RSIZE=${RSIZE//,/}
 

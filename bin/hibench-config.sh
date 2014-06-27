@@ -26,18 +26,20 @@ export HIBENCH_VERSION="2.2"
 
 export JAVA_HOME=
 export HADOOP_HOME=
-export HADOOP_EXECUTABLE= 
+export HADOOP_EXECUTABLE=
 export HADOOP_CONF_DIR=
 export HADOOP_EXAMPLES_JAR=
 export MAPRED_EXECUTABLE=
 
-export HADOOP_MAPRED_HOME=$HADOOP_HOME
+export HADOOP_MAPRED_HOME=
 export HADOOP_VERSION=hadoop2 # set it to hadoop1 to enable MR1, hadoop2 to enable MR2
 
 if $HADOOP_EXECUTABLE version|grep -i -q cdh4; then
 	HADOOP_RELEASE=cdh4
 elif $HADOOP_EXECUTABLE version|grep -i -q cdh5; then
         HADOOP_RELEASE=cdh5
+elif $HADOOP_EXECUTABLE version|grep -i -q "hadoop 2.2"; then
+        HADOOP_RELEASE=hadoop22
 elif $HADOOP_EXECUTABLE version|grep -i -q "hadoop 2"; then
         HADOOP_RELEASE=hadoop2
 else
@@ -79,7 +81,11 @@ if [ -z "$HIVE_HOME" ]; then
 fi
 
 if [ -z "$MAHOUT_HOME" ]; then
-    export MAHOUT_HOME=${HIBENCH_HOME}/common/mahout-distribution-0.7-$HADOOP_RELEASE
+    if [ "$HADOOP_RELEASE" == "hadoop22" ]; then
+        export MAHOUT_HOME=${HIBENCH_HOME}/common/mahout-distribution-1.0-SNAPSHOT-$HADOOP_RELEASE
+    else
+        export MAHOUT_HOME=${HIBENCH_HOME}/common/mahout-distribution-0.7-$HADOOP_RELEASE
+    fi
 fi
 
 if [ -z "$NUTCH_HOME" ]; then
