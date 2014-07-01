@@ -24,12 +24,12 @@ export HIBENCH_VERSION="2.2"
 
 ###################### Global Paths ##################
 
-export JAVA_HOME=
-export HADOOP_HOME=
-export HADOOP_EXECUTABLE=
-export HADOOP_CONF_DIR=
-export HADOOP_EXAMPLES_JAR=
-export MAPRED_EXECUTABLE=
+export JAVA_HOME=`printenv JAVA_HOME`
+export HADOOP_HOME=`printenv HADOOP_HOME`
+export HADOOP_EXECUTABLE=$HADOOP_HOME/bin/hadoop
+export HADOOP_CONF_DIR=$HADOOP_HOME/conf
+export HADOOP_EXAMPLES_JAR=$HADOOP_HOME/hadoop-examples*.jar
+export MAPRED_EXECUTABLE=$HADOOP_HOME/bin/mapred
 
 export HADOOP_MAPRED_HOME=
 export HADOOP_VERSION=hadoop2 # set it to hadoop1 to enable MR1, hadoop2 to enable MR2

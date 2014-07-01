@@ -34,7 +34,11 @@ OUTPUT_HDFS=${HIVE_BASE_HDFS}/${HIVE_OUTPUT}
 # for prepare (in total) 1G-rankings (text), 20G-uservisits (text)
 USERVISITS=100000000
 PAGES=12000000
+#USERVISITS=400000000
+#PAGES=48000000
 
 # for prepare & running (in total)
 NUM_MAPS=96
 NUM_REDS=48
+#NUM_MAPS=384
+#NUM_REDS=192

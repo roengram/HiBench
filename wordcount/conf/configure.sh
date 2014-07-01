@@ -22,6 +22,8 @@ COMPRESS_CODEC=$COMPRESS_CODEC_GLOBAL
 # paths
 INPUT_HDFS=${DATA_HDFS}/Wordcount/Input
 OUTPUT_HDFS=${DATA_HDFS}/Wordcount/Output
+#INPUT_HDFS=s3n://hibench/Wordcount/Input
+#OUTPUT_HDFS=s3n://hibench/Wordcount/Output
 
 if [ $COMPRESS -eq 1 ]; then
     INPUT_HDFS=${INPUT_HDFS}-comp
@@ -30,8 +32,9 @@ fi
 
 # for preparation (per node) - 32G
 #DATASIZE=32000000000
-DATASIZE=3200000000
-NUM_MAPS=16
+# 32G
+DATASIZE=12800000000
+NUM_MAPS=64
 
 # for running (in total)
-NUM_REDS=48
+NUM_REDS=192
