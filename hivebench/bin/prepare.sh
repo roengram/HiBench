@@ -43,6 +43,10 @@ rm -rf $TMPLOGFILE
 START_TIME=`timestamp`
 
 $HADOOP_EXECUTABLE jar ${DATATOOLS} HiBench.DataGen ${OPTION} ${COMPRESS_OPT} 2>&1 | tee $TMPLOGFILE
+if [ $? -ne 0 ]
+then
+    exit $?
+fi
 
 END_TIME=`timestamp`
 CODEC=`echo ${COMPRESS_CODEC} | sed 's/.*\.//'`

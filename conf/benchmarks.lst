@@ -5,5 +5,5 @@ hivebench
 kmeans
 pagerank
 bayes
-sort
+#sort
 terasort

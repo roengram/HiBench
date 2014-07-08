@@ -40,4 +40,7 @@ OPTION="-t pagerank \
 
 #	-d ${DELIMITER} \
 $HADOOP_EXECUTABLE jar ${DATATOOLS} HiBench.DataGen ${OPTION} ${COMPRESS_OPT} 2>&1 | tee $TMPLOGFILE
-
+if [ $? -ne 0 ]
+then
+    exit $?
+fi

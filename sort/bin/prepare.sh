@@ -47,3 +47,8 @@ else
     $INPUT_HDFS
 
 fi
+
+if [ $? -ne 0 ]
+then
+    exit $?
+fi

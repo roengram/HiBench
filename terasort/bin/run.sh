@@ -31,6 +31,10 @@ START_TIME=`timestamp`
 
 # run bench
 $HADOOP_EXECUTABLE jar $HADOOP_EXAMPLES_JAR terasort -D $CONFIG_REDUCER_NUMBER=$NUM_REDS $INPUT_HDFS $OUTPUT_HDFS
+if [ $? -ne 0 ]
+then
+    exit $?
+fi
 
 # post-running
 END_TIME=`timestamp`

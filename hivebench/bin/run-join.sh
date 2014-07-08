@@ -76,6 +76,10 @@ START_TIME=`timestamp`
 
 # run bench
 $HIVE_HOME/bin/hive -f $DIR/hive-benchmark/rankings_uservisits_join.hive
+if [ $? -ne 0 ]
+then
+    exit $?
+fi
 
 # post-running
 END_TIME=`timestamp`

@@ -68,6 +68,10 @@ START_TIME=`timestamp`
 # run bench
 echo $HIVE_HOME/bin/hive -f $DIR/hive-benchmark/uservisits_aggre.hive
 $HIVE_HOME/bin/hive -f $DIR/hive-benchmark/uservisits_aggre.hive
+if [ $? -ne 0 ]
+then
+    exit $?
+fi
 
 # post-running
 END_TIME=`timestamp`

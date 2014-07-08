@@ -44,6 +44,10 @@ START_TIME=`timestamp`
 
 # run bench
 ${MAHOUT_HOME}/bin/mahout kmeans  ${OPTION}
+if [ $? -ne 0 ]
+then
+    exit $?
+fi
 
 # post-running
 END_TIME=`timestamp`

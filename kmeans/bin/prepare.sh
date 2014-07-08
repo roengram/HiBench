@@ -44,4 +44,7 @@ export HADOOP_CLASSPATH=$HADOOP_CLASSPATH:$HIBENCH_HOME/common/autogen/lib/uncom
 rm -rf $TMPLOGFILE
 
 exec "$HADOOP_EXECUTABLE" --config $HADOOP_CONF_DIR jar ${DATATOOLS} org.apache.mahout.clustering.kmeans.GenKMeansDataset -libjars $MAHOUT_HOME/examples/target/mahout-examples-1.0-SNAPSHOT-job.jar,$HIBENCH_HOME/common/autogen/lib/uncommons-maths-1.2.2.jar ${COMPRESS_OPT} ${OPTION} 2>&1 | tee $TMPLOGFILE
-
+if [ $? -ne 0 ]
+then
+    exit $?
+fi

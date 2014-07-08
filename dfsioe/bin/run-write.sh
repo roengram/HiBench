@@ -32,6 +32,10 @@ START_TIME=`timestamp`
 
 #run benchmark
 ${HADOOP_EXECUTABLE} jar ${DATATOOLS} org.apache.hadoop.fs.dfsioe.TestDFSIOEnh ${OPTION} -resFile ${DIR}/result_write.txt -tputFile ${DIR}/throughput_write.csv
+if [ $? -ne 0]
+then
+    exit $?
+fi
 
 # post-running
 END_TIME=`timestamp`

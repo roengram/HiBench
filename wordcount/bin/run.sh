@@ -41,6 +41,10 @@ $HADOOP_EXECUTABLE jar $HADOOP_EXAMPLES_JAR wordcount \
     -D mapreduce.job.outputformat.class=org.apache.hadoop.mapreduce.lib.output.SequenceFileOutputFormat \
     $INPUT_HDFS $OUTPUT_HDFS \
     2>&1 | tee $TMPLOGFILE
+if [ $? -ne 0 ]
+then
+    exit $?
+fi
 
 # post-running
 END_TIME=`timestamp`

@@ -41,9 +41,17 @@ START_TIME=`timestamp`
 # run bench
 $MAHOUT_HOME/bin/mahout seq2sparse \
         $COMPRESS_OPT -i ${INPUT_HDFS} -o ${OUTPUT_HDFS}/vectors  -lnorm -nv  -wt tfidf -ng ${NGRAMS} -nr ${NUM_REDS}
+if [ $? -ne 0 ]
+then
+    exit $?
+fi
 
 $MAHOUT_HOME/bin/mahout trainnb \
-        $COMPRESS_OPT -i ${OUTPUT_HDFS}/vectors/tfidf-vectors -el -o ${OUTPUT_HDFS}/model -li ${OUTPUT_HDFS}/labelindex  -ow --tempDir ${OUTPUT_HDFS}/temp -nr ${NUM_REDS}
+        $COMPRESS_OPT -i ${OUTPUT_HDFS}/vectors/tfidf-vectors -el -o ${OUTPUT_HDFS}/model -li ${OUTPUT_HDFS}/labelindex  -ow --tempDir ${OUTPUT_HDFS}/temp
+if [ $? -ne 0 ]
+then
+    exit $?
+fi
 
 # post-running
 END_TIME=`timestamp`

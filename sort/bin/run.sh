@@ -41,6 +41,10 @@ $HADOOP_EXECUTABLE jar $HADOOP_EXAMPLES_JAR sort \
     -r ${NUM_REDS} \
     $INPUT_HDFS $OUTPUT_HDFS \
     2>&1 | tee $TMPLOGFILE
+if [ $? -ne 0 ]
+then
+    exit $?
+fi
 
 # post-running
 END_TIME=`timestamp`
